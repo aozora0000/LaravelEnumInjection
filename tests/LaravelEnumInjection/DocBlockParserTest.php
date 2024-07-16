@@ -62,4 +62,5 @@ class DocBlockParserTest extends TestCase
         $this->assertTrue(StructureString::ruleOnly(['one'])->passes('', 'one'));
         $this->assertFalse(StructureString::rules()->passes('', 'One'));
     }
+
 }

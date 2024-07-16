@@ -33,22 +33,6 @@ enum StructureInt: int implements Arrayable, Jsonable, JsonSerializable
     /**
      * @throws \ReflectionException
      */
-    public function name(): string
-    {
-        return $this->docBlockParse();
-    }
-
-    /**
-     * @throws \ReflectionException
-     */
-    public function slug(): string
-    {
-        return $this->docBlockParse();
-    }
-
-    /**
-     * @throws \ReflectionException
-     */
     public function toArray()
     {
         return [

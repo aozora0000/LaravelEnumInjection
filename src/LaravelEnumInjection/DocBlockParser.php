@@ -17,12 +17,21 @@ trait DocBlockParser
     /**
      * @throws ReflectionException
      */
+    public function __call(string $name, array $arguments)
+    {
+        return $this->docBlockParse($name);
+    }
+
+    /**
+     * @throws ReflectionException
+     */
     private function docBlockParse(string $name = ''): string
     {
         \assert($this instanceof BackedEnum);
         if($name === '') {
-            $name = $this->getNamePrefix(debug_backtrace()[1]['function']);
+            $name = debug_backtrace()[1]['function'];
         }
+        $name = $this->getNamePrefix($name);
         $factory = DocBlockFactory::createInstance();
         $rc = new ReflectionEnum($this);
         $docBlock = $factory->create($rc->getCase($this->name)->getDocComment());

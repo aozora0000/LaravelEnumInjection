@@ -30,21 +30,6 @@ enum StructureString: string implements Arrayable, Jsonable, JsonSerializable
      */
     case three = 'three';
 
-    /**
-     * @throws \ReflectionException
-     */
-    public function name(): string
-    {
-        return $this->docBlockParse();
-    }
-
-    /**
-     * @throws \ReflectionException
-     */
-    public function slug(): string
-    {
-        return $this->docBlockParse();
-    }
 
     /**
      * @throws \ReflectionException
