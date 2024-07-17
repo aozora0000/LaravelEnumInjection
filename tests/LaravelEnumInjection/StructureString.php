@@ -5,12 +5,12 @@ namespace Tests\LaravelEnumInjection;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Contracts\Support\Jsonable;
 use JsonSerializable;
-use LaravelEnumInjection\DocBlockParser;
+use LaravelEnumInjection\CaseAttributeValues;
 use LaravelEnumInjection\EnumValidateRule;
 
 enum StructureString: string implements Arrayable, Jsonable, JsonSerializable
 {
-    use DocBlockParser;
+    use CaseAttributeValues;
     use EnumValidateRule;
 
     /**

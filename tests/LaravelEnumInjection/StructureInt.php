@@ -5,29 +5,22 @@ namespace Tests\LaravelEnumInjection;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Contracts\Support\Jsonable;
 use JsonSerializable;
-use LaravelEnumInjection\DocBlockParser;
+use LaravelEnumInjection\CaseAttributeValues;
 use LaravelEnumInjection\EnumValidateRule;
+use LaravelEnumInjection\InjectionValues;
 
 enum StructureInt: int implements Arrayable, Jsonable, JsonSerializable
 {
-    use DocBlockParser;
+    use CaseAttributeValues;
     use EnumValidateRule;
 
-    /**
-     * @v_name One
-     * @v_slug structure-1
-     */
+    #[InjectionValues(id: 1, name: 'One', slug: "structure-1")]
     case one = 1;
 
-    /**
-     * @v_name Two
-     * @v_slug structure-2
-     */
+    #[InjectionValues(id: 2, name: 'Two', slug: "structure-2")]
     case two = 2;
 
-    /**
-     * @v_name Three
-     */
+    #[InjectionValues(id: 3, name: 'Three')]
     case three = 3;
 
     /**
@@ -35,11 +28,7 @@ enum StructureInt: int implements Arrayable, Jsonable, JsonSerializable
      */
     public function toArray()
     {
-        return [
-            'id' => $this->value,
-            'name' => $this->name(),
-            'slug' => $this->slug(),
-        ];
+        return $this->getCaseAttributes();
     }
 
     public function toJson($options = 0)
