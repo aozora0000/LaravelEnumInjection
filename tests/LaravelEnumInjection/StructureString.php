@@ -7,49 +7,19 @@ use Illuminate\Contracts\Support\Jsonable;
 use JsonSerializable;
 use LaravelEnumInjection\CaseAttributeValues;
 use LaravelEnumInjection\EnumValidateRule;
+use LaravelEnumInjection\InjectionValues;
 
 enum StructureString: string implements Arrayable, Jsonable, JsonSerializable
 {
     use CaseAttributeValues;
     use EnumValidateRule;
 
-    /**
-     * @v_name One
-     * @v_slug structure-1
-     */
+    #[InjectionValues(id: 'one', name: 'One', slug: 'structure-1')]
     case one = 'one';
 
-    /**
-     * @v_name Two
-     * @v_slug structure-2
-     */
+    #[InjectionValues(id: 'two', name: 'Two', slug: "structure-2")]
     case two = 'two';
 
-    /**
-     * @v_name Three
-     */
+    #[InjectionValues(id: 'three', name: 'Three')]
     case three = 'three';
-
-
-    /**
-     * @throws \ReflectionException
-     */
-    public function toArray()
-    {
-        return [
-            'id' => $this->value,
-            'name' => $this->name(),
-            'slug' => $this->slug(),
-        ];
-    }
-
-    public function toJson($options = 0)
-    {
-        return $this->toArray();
-    }
-
-    public function jsonSerialize(): mixed
-    {
-        return $this->toArray();
-    }
 }

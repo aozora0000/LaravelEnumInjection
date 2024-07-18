@@ -2,10 +2,11 @@
 
 namespace Tests\LaravelEnumInjection;
 
+use LaravelEnumInjection\Exception\UndefinedPropertyException;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
-class DocBlockParserTest extends TestCase
+class CaseAttributeValuesTest extends TestCase
 {
     #[Test]
     public function Int列挙型のDocBlockから値が取得出来る(): void
@@ -21,11 +22,12 @@ class DocBlockParserTest extends TestCase
     }
 
     #[Test]
-    public function Int列挙型のDocBlockで定義されていない値は空になる(): void
+    public function Int列挙型のDocBlockで定義されていない値は例外になる(): void
     {
+        $this->expectException(UndefinedPropertyException::class);
+
         $enum = StructureInt::three;
-        $this->assertSame('Three', $enum->name());
-        $this->assertSame('', $enum->slug());
+        $enum->slug();
     }
 
     #[Test]
@@ -49,11 +51,11 @@ class DocBlockParserTest extends TestCase
     }
 
     #[Test]
-    public function String列挙型のDocBlockで定義されていない値は空になる(): void
+    public function String列挙型のDocBlockで定義されていない値は例外になる(): void
     {
+        $this->expectException(UndefinedPropertyException::class);
         $enum = StructureString::three;
-        $this->assertSame('Three', $enum->name());
-        $this->assertSame('', $enum->slug());
+        $enum->slug();
     }
 
     #[Test]

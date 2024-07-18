@@ -12,6 +12,10 @@ use Illuminate\Support\Collection;
      */
     private Collection $inputs;
 
+    /**
+     * @template T
+     * @param T ...$inputs
+     */
     public function __construct(array ...$inputs)
     {
         $this->inputs = collect($inputs);

@@ -22,22 +22,4 @@ enum StructureInt: int implements Arrayable, Jsonable, JsonSerializable
 
     #[InjectionValues(id: 3, name: 'Three')]
     case three = 3;
-
-    /**
-     * @throws \ReflectionException
-     */
-    public function toArray()
-    {
-        return $this->getCaseAttributes();
-    }
-
-    public function toJson($options = 0)
-    {
-        return $this->toArray();
-    }
-
-    public function jsonSerialize(): mixed
-    {
-        return $this->toArray();
-    }
 }

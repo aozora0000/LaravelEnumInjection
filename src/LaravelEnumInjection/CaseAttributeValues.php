@@ -50,4 +50,22 @@ trait CaseAttributeValues
         }
         throw new UndefinedPropertyException(sprintf("%s::%sのアトリビュートに%sが設定されていません。", get_class($this), $this->name, $name));
     }
+
+    /**
+     * @throws \ReflectionException
+     */
+    public function toArray()
+    {
+        return $this->getCaseAttributes();
+    }
+
+    public function toJson($options = 0)
+    {
+        return $this->toArray();
+    }
+
+    public function jsonSerialize(): mixed
+    {
+        return $this->toArray();
+    }
 }
